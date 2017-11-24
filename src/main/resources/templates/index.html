@@ -3,8 +3,9 @@
     <div th:replace="fragments/head">...</div>
 
     <body>
+        <div th:replace="fragments/navigation">...</div>
+        
         <center>
-            <div th:replace="fragments/navigation">...</div>
             <h1>Database test!</h1>
 
             <form th:action="@{/}" method="POST">
