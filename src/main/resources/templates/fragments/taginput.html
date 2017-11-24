@@ -1,0 +1,32 @@
+<center>
+    <h1>Tag Test</h1>
+    <form th:action="@{/}" method="POST">
+        <input type="text" class="multi-input" placeholder="Separate keywords with ,"/>
+    </form>
+
+    <div class="my-tags">
+
+    </div>
+</center>
+
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    window.onload = function() {
+        $(".multi-input").on("input", function() {
+            var text = this.value.trim();
+            var keywords = text.split(",");
+
+            if (keywords.length > 1) {
+                this.value = keywords[keywords.length - 1];
+                for (var i = 0; i < keywords.length - 1; i++) {
+                    if (keywords[i].length > 0) {
+                        $(".my-tags").append("<div class=\"tag-item\">"
+                            + keywords[i]
+                        + "</div>");
+                    }
+                }
+            }
+        });
+    }
+    /*]]>*/
+</script>

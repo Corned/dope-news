@@ -18,6 +18,11 @@ h1 {
     font-weight: bolder;
 }
 
+a {
+    color: white;
+    text-decoration: none;
+}
+
 /* FLOATS */
 .left {
     float: left;
