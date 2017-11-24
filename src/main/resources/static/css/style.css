@@ -36,6 +36,22 @@ h1 {
     top: 0px;
 }
 
+.my-tags {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 500px;
+}
+
+.tag-item {
+    width: auto;
+    background-color: rgb(167, 164, 164);
+    border-radius: 500px;
+    padding: 10px 20px;
+    margin: 5px 5px;
+    font-weight: bolder;
+}
+
 /* HEADER & NAVIGATION */
 .header {
     background-color: rgb(255, 75, 75);
