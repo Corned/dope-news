@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
     <div th:replace="fragments/head">...</div>
-
+    <div th:replace="fragments/scripts">...</div>
+    
     <body>
         <div th:replace="fragments/navigation">...</div>
 
@@ -16,9 +17,8 @@
                 <!-- julkaisuaika backend -->
                 <div th:replace="fragments/kirjoittaja-input">...</div>
                 <div th:replace="fragments/kategoria-input">...</div>
+                <input type="submit" value="Submit!"/>
             </form>
         </center>
     </body>
-
-    <div th:replace="fragments/scripts">...</div>
 </html>

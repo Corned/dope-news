@@ -1,13 +1,11 @@
 <h1>Lisää Kirjoittajat</h1>
-<input type="text" class="writer-multi-input" placeholder="Separate keywords with ,"/>
+<input type="text" class="writer-multi-input" placeholder="Erottele kirjoittajat pilkulla"/>
 
-<div class="writers">
-
-</div>
+<div class="writers"></div>
 
 <script th:inline="javascript">
     /*<![CDATA[*/
-    window.onload = function() {
+    $(document).ready(function() {
         $(".writer-multi-input").on("input", function() {
             var text = this.value.trim();
             var keywords = text.split(",");
@@ -25,6 +23,6 @@
                 }
             }
         });
-    }
+    });
     /*]]>*/
 </script>

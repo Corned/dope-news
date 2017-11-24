@@ -1,13 +1,11 @@
 <h1>Syötä Kategoriat</h1>
 <input type="text" class="category-multi-input" placeholder="Erottele kategoriat pilkulla"/>
 
-<div class="categories">
-
-</div>
+<div class="categories"></div>
 
 <script th:inline="javascript">
     /*<![CDATA[*/
-    window.onload = function() {
+    $(document).ready(function() {
         $(".category-multi-input").on("input", function() {
             var text = this.value.trim();
             var keywords = text.split(",");
@@ -25,6 +23,6 @@
                 }
             }
         });
-    }
+    });
     /*]]>*/
 </script>
