@@ -1,16 +1,14 @@
-<center>
-    <h1>Syötä Kategoriat</h1>
-    <input type="text" class="category-multi-input" placeholder="Erottele kategoriat pilkulla"/>
+<h1>Syötä Kategoriat</h1>
+<input type="text" class="category-multi-input" placeholder="Erottele kategoriat pilkulla"/>
 
-    <div class="categories">
+<div class="categories">
 
-    </div>
-</center>
+</div>
 
 <script th:inline="javascript">
     /*<![CDATA[*/
     window.onload = function() {
-        $(".writer-multi-input").on("input", function() {
+        $(".category-multi-input").on("input", function() {
             var text = this.value.trim();
             var keywords = text.split(",");
 
@@ -22,7 +20,7 @@
                         $(".categories").append("<div class=\"flex-item\">"
                             + keyword
                         + "</div>");
-                        $(".categories").append(`<input type="hidden" value="kategoriat"/>`);
+                        $(".categories").append(`<input type="hidden" name="kategoriat" value="${keyword}"/>`);
                     }
                 }
             }

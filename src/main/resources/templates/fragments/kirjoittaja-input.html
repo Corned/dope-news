@@ -1,6 +1,5 @@
-
-<h1>Tag Test</h1>
-<input type="text" class="multi-input" placeholder="Separate keywords with ,"/>
+<h1>Lisää Kirjoittajat</h1>
+<input type="text" class="writer-multi-input" placeholder="Separate keywords with ,"/>
 
 <div class="writers">
 
@@ -9,7 +8,7 @@
 <script th:inline="javascript">
     /*<![CDATA[*/
     window.onload = function() {
-        $(".multi-input").on("input", function() {
+        $(".writer-multi-input").on("input", function() {
             var text = this.value.trim();
             var keywords = text.split(",");
 
@@ -21,7 +20,7 @@
                         $(".writers").append("<div class=\"flex-item\">"
                             +  keyword
                         + "</div>");
-                        $(".writers").append(`<input type="hidden" value="kirjoittajat"/>`);
+                        $(".writers").append(`<input type="hidden" name="kirjoittajat" value="${keyword}"/>`);
                     }
                 }
             }
