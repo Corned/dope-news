@@ -1,5 +1,7 @@
 package dopenews.controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -7,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import dopenews.repository.NewsRepository;
 import dopenews.domain.News;
@@ -40,7 +43,9 @@ public class NewsController {
     }
 
     @PostMapping("/luo")
-    public String luoPOST() {
+    public String luoPOST(@RequestParam String otsikko, @RequestParam String ingressi, 
+            @RequestParam MultipartFile kuva, @RequestParam String leipateksti, 
+            @RequestParam List<String> kirjoittajat, @RequestParam List<String> kategoriat) {
         return "redirect:/"; // to news id
     }
 }
