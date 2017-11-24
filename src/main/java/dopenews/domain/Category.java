@@ -15,8 +15,8 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 @AllArgsConstructor
 @Data
 @NoArgsConstructor
-public class Writer extends AbstractPersistable<Long> {
-    private String nimi;
+public class Category extends AbstractPersistable<Long> {
+    private String kategoria;
     @ManyToMany
     private List<News> uutiset;
 }

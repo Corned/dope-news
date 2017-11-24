@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import dopenews.repository.NewsRepository;
-import dopenews.domain.News;
+import dopenews.domain.*;
 
 @Controller
 public class NewsController {
@@ -22,19 +22,7 @@ public class NewsController {
 
     @GetMapping("/")
     public String list(Model model) {
-        //model.addAttribute("news", newsRepository.findAll());
         return "index";
-    }
-
-    @PostMapping("/")
-    public String save(@RequestParam("title") String title) {
-       /* News news = new News();
-        news.setTitle(title);
-
-        System.out.println(title);
-
-        newsRepository.saveAndFlush(news);*/
-        return "redirect:/";
     }
 
     @GetMapping("/luo")
@@ -46,6 +34,13 @@ public class NewsController {
     public String luoPOST(@RequestParam String otsikko, @RequestParam String ingressi, 
             @RequestParam MultipartFile kuva, @RequestParam String leipateksti, 
             @RequestParam List<String> kirjoittajat, @RequestParam List<String> kategoriat) {
+
+        System.out.println(otsikko);
+        System.out.println(ingressi);
+        System.out.println(kuva.getOriginalFilename());
+        System.out.println(leipateksti);
+        System.out.println(kirjoittajat.size());
+        System.out.println(kategoriat.size());
         return "redirect:/"; // to news id
     }
 }
