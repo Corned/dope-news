@@ -3,23 +3,57 @@
     <div th:replace="fragments/head">...</div>
 
     <body>
-        <div th:replace="fragments/navigation">...</div>
-        <h1>Database test!</h1>
+        <center>
+            <div th:replace="fragments/navigation">...</div>
+            <h1>Database test!</h1>
 
-        <form th:action="@{/}" method="POST">
-            <p>Title:</p>
-            <input name="title" type="text" placeholder="News Headline :D"/>
+            <form th:action="@{/}" method="POST">
+                <p>Title:</p>
+                <input name="title" type="text" placeholder="News Headline :D"/>
 
-            <input type="submit" value="Tallenna"/>
-        </form>
-    
-        <table>
-            <tr th:each="news_ : ${news}">
-                <td><p th:text="${news_.title}">title :D</p></td>
-            </tr>
-        </table>
+                <input type="submit" value="Tallenna"/>
+            </form>
+        
+            <table>
+                <tr th:each="news_ : ${news}">
+                    <td><p th:text="${news_.title}">title :D</p></td>
+                </tr>
+            </table>
+        </center>
+
+        <center>
+            <h1>Tag Test</h1>
+            <form th:action="@{/}" method="POST">
+                <input type="text" class="multi-input" placeholder="Separate keywords with ,"/>
+            </form>
+
+            <ul class="my-tags">
+
+            </ul>
+        </center>
 
     </body>
+
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+        window.onload = function() {
+            $(".multi-input").on("input", function() {
+                var text = this.value.trim();
+                var keywords = text.split(",");
+
+                if (keywords.length > 1) {
+                    this.value = keywords[keywords.length - 1];
+                    for (var i = 0; i < keywords.length - 1; i++) {
+                        $(".my-tags").append("<li>"
+                            + keywords[i]
+                        + "</li>");
+                    }
+                }
+            });
+        }
+        /*]]>*/
+    </script>
+    
 
     <div th:replace="fragments/scripts">...</div>
 </html>
