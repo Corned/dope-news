@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <div th:replace="fragments/head">...</div>
+
+    <body>
+        <div th:replace="fragments/navigation">...</div>
+        <h1>Database test!</h1>
+
+        <form th:action="@{/}" method="POST">
+            <p>Title:</p>
+            <input name="title" type="text" placeholder="News Headline :D"/>
+
+            <input type="submit" value="Tallenna"/>
+        </form>
+    
+        <table>
+            <tr th:each="news_ : ${news}">
+                <td><p th:text="${news_.title}">title :D</p></td>
+            </tr>
+        </table>
+
+
+
+    </body>
+</html>

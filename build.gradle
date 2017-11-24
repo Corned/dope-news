@@ -29,7 +29,7 @@ repositories {
     maven { url 'https://repo.spring.io/snapshot' }
 }
     
-mainClassName='ohtu.Main'
+mainClassName='dopenews.Main'
 
 dependencies {
 
