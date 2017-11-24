@@ -23,6 +23,29 @@ a {
     text-decoration: none;
 }
 
+input, textarea {
+    background-color: white;
+    border-color: #dddddd;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 10px;
+    box-shadow: none !important;
+    display: block;
+    width: 100%;
+
+    font-size: 17px;
+
+    margin-bottom: 10px;
+    padding-left: 5px;
+    padding-right: 5px;
+    text-align: left;
+
+    outline: none !important;
+    -webkit-appearance: none;
+    resize: none;
+}
+
+
 /* FLOATS */
 .left {
     float: left;
@@ -45,12 +68,12 @@ a {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    width: 500px;
+    width: 100%;
 }
 
 .flex-item {
     width: auto;
-    background-color: rgb(167, 164, 164);
+    background-color: rgb(204, 204, 204);
     border-radius: 500px;
     padding: 10px 20px;
     margin: 5px 5px;
@@ -96,4 +119,24 @@ a {
 
 .navigation-button > a:hover {
     background-color: rgb(199, 60, 60);
+}
+
+/* OTHERS */
+.content {
+    max-width: 900px;
+    width: 900px;
+}
+
+.multi-input-container {
+    display: flex;
+}
+
+.multi-input {
+    max-width: 100%;
+    width: 50%;
+    padding: 20px;
+}
+
+.writer-multi-input, .category-multi-input {
+    text-align: center;
 }

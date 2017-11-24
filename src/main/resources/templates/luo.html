@@ -7,18 +7,26 @@
         <div th:replace="fragments/navigation">...</div>
 
         <center>
-            <h1>Luo Uutinen</h1>
-            <!-- Otsikko, Ingressi, Kuva, Leipäteksti, Julkaisuaika, kirjoittajat, kategoriat -->
-            <form th:action="@{/luo}" th:method="POST" id="news-form" enctype="multipart/form-data">
-                <input type="text" name="otsikko" placeholder="Otsikko"/>
-                <input type="text" name="ingressi" placeholder="Ingressi"/>
-                <input type="file" name="kuva"/>
-                <textarea name="leipateksti" rows="4" cols="50" placeholder="Leipäteksti"/>
-                <!-- julkaisuaika backend -->
-                <div th:replace="fragments/kirjoittaja-input">...</div>
-                <div th:replace="fragments/kategoria-input">...</div>
-                <input type="submit" value="Submit!"/>
-            </form>
+            <div class="content">
+                <h1 class="left">Luo Uutinen</h1>
+                <!-- Otsikko, Ingressi, Kuva, Leipäteksti, Julkaisuaika, kirjoittajat, kategoriat -->
+                <form th:action="@{/luo}" th:method="POST" id="news-form" enctype="multipart/form-data">
+                    <input type="text" name="otsikko" placeholder="Otsikko"/>
+                    <textarea name="ingressi" rows="2" cols="50" placeholder="Ingressi"/>
+                    <textarea name="leipateksti" rows="4" cols="50" placeholder="Leipäteksti"/>
+                    <!-- julkaisuaika backend -->
+                    <input type="file" name="kuva"/>
+
+                    <div class="multi-input-container">
+                        <div th:replace="fragments/kirjoittaja-input">...</div>
+                        <div th:replace="fragments/kategoria-input">...</div>
+                    </div>
+
+                    <input type="hidden" value="!" name="kategoriat"/>
+                    <input type="hidden" value="!" name="kirjoittajat"/>                    
+                    <input type="submit" value="Submit!"/>
+                </form>
+            </div>
         </center>
     </body>
 </html>
