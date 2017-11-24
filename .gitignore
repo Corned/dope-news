@@ -6,3 +6,5 @@
 .vscode/
 bin/
 build/
+
+database.mv.db
