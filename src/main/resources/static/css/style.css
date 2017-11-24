@@ -41,14 +41,14 @@ a {
     top: 0px;
 }
 
-.my-tags {
+.categories, .writers {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
     width: 500px;
 }
 
-.tag-item {
+.flex-item {
     width: auto;
     background-color: rgb(167, 164, 164);
     border-radius: 500px;

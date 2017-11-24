@@ -1,13 +1,10 @@
-<center>
-    <h1>Tag Test</h1>
-    <form th:action="@{/}" method="POST">
-        <input type="text" class="multi-input" placeholder="Separate keywords with ,"/>
-    </form>
 
-    <div class="my-tags">
+<h1>Tag Test</h1>
+<input type="text" class="multi-input" placeholder="Separate keywords with ,"/>
 
-    </div>
-</center>
+<div class="writers">
+
+</div>
 
 <script th:inline="javascript">
     /*<![CDATA[*/
@@ -19,10 +16,12 @@
             if (keywords.length > 1) {
                 this.value = keywords[keywords.length - 1];
                 for (var i = 0; i < keywords.length - 1; i++) {
-                    if (keywords[i].length > 0) {
-                        $(".my-tags").append("<div class=\"tag-item\">"
-                            + keywords[i]
+                    var keyword = keywords[i].trim();
+                    if ( keyword.length > 0) {
+                        $(".writers").append("<div class=\"flex-item\">"
+                            +  keyword
                         + "</div>");
+                        $(".writers").append(`<input type="hidden" value="kirjoittajat"/>`);
                     }
                 }
             }

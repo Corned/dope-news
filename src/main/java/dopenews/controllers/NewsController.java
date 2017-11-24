@@ -12,25 +12,35 @@ import dopenews.repository.NewsRepository;
 import dopenews.domain.News;
 
 @Controller
-public class Controllers {
+public class NewsController {
     @Autowired
     private NewsRepository newsRepository;
 
 
     @GetMapping("/")
     public String list(Model model) {
-        model.addAttribute("news", newsRepository.findAll());
+        //model.addAttribute("news", newsRepository.findAll());
         return "index";
     }
 
     @PostMapping("/")
     public String save(@RequestParam("title") String title) {
-        News news = new News();
+       /* News news = new News();
         news.setTitle(title);
 
         System.out.println(title);
 
-        newsRepository.saveAndFlush(news);
+        newsRepository.saveAndFlush(news);*/
         return "redirect:/";
+    }
+
+    @GetMapping("/luo")
+    public String luoGET() {
+        return "luo";
+    }
+
+    @PostMapping("/luo")
+    public String luoPOST() {
+        return "redirect:/"; // to news id
     }
 }

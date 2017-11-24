@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <div th:replace="fragments/head">...</div>
+
+    <body>
+        <div th:replace="fragments/navigation">...</div>
+
+        <center>
+            <h1>Luo Uutinen</h1>
+            <!-- Otsikko, Ingressi, Kuva, Leipäteksti, Julkaisuaika, kirjoittajat, kategoriat -->
+            <form th:action="@{/luo}" th:method="POST" id="news-form" enctype="multipart/form-data">
+                <input type="text" name="otsikko" placeholder="Otsikko"/>
+                <input type="text" name="ingressi" placeholder="Ingressi"/>
+                <input type="file" name="kuva"/>
+                <textarea name="leipateksti" rows="4" cols="50" placeholder="Leipäteksti"/>
+                <!-- julkaisuaika backend -->
+                <div th:replace="fragments/kirjoittaja-input">...</div>
+
+
+            </form>
+        </center>
+    </body>
+
+    <div th:replace="fragments/scripts">...</div>
+</html>
