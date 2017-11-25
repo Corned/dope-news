@@ -7,7 +7,7 @@
     </body>
 
     <center>
-            
+                    
         <ul>
             <li th:each="n : ${news}">
                 <div class="news-container">
@@ -15,36 +15,17 @@
                     <div class="image-container">
                         <img class="image" th:src="@{${'/image/' + n.kuva.id}}"/>
                     </div>
-                    <h3><span th:text="${n.ingressi}">...</span></h3>
+                    <div class="test-1">
+                        <span class="test-2" th:each="c : ${n.kategoriat}" th:text="${c.kategoria}">...</span>
+                    </div>
+           
+                    <h3>
+                        <span th:text="${n.ingressi}">...</span>
+                    </h3>
                 </div>
             </li>
         </ul>
         
-        <ul>
-            <li th:each="n : ${news}">
-                <div class="news-container">
-                    <h1><span th:text="${n.otsikko}">...</span></h1>
-                    <div class="image-container">
-                        <img class="image" th:src="@{${'/image/' + n.kuva.id}}"/>
-                    </div>
-                    <h3><span th:text="${n.ingressi}">...</span></h3>
-                </div>
-            </li>
-        </ul>
-        
-
-        <ul>
-            <li th:each="n : ${news}">
-                <div class="news-container">
-                    <h1><span th:text="${n.otsikko}">...</span></h1>
-                    <div class="image-container">
-                        <img class="image" th:src="@{${'/image/' + n.kuva.id}}"/>
-                    </div>
-                    <h3><span th:text="${n.ingressi}">...</span></h3>
-                </div>
-            </li>
-        </ul>
-
     </center>
 
 

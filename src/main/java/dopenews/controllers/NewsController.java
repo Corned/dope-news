@@ -59,6 +59,8 @@ public class NewsController {
         picture.setMediaType(kuva.getContentType());
         picture.setContentLength(kuva.getSize());
         pictureRepository.save(picture);
+
+        News news = new News();
         
         List<Writer> writers = new ArrayList();
         for (int index = 0; index < kirjoittajat.size(); index++) {
@@ -69,7 +71,7 @@ public class NewsController {
             if (writer == null) {
                 writer = new Writer();
                 writer.setNimi(kirjoittajaNimi);
-                writerRepository.save(writer);
+                writerRepository.saveAndFlush(writer);
             }
 
             writers.add(writer);
@@ -84,13 +86,12 @@ public class NewsController {
             if (category == null) {
                 category = new Category();
                 category.setKategoria(kategoriaNimi);
-                categoryRepository.save(category);
+                categoryRepository.saveAndFlush(category);
             }
 
             categories.add(category);
         }
 
-        News news = new News();
         news.setOtsikko(otsikko);
         news.setIngressi(ingressi);
         news.setKuva(picture);
@@ -99,12 +100,17 @@ public class NewsController {
         news.setKategoriat(categories);
         news.setJulkaisuaika(new Date());
 
-        newsRepository.save(news);
-
-        writerRepository.flush();
-        categoryRepository.flush();
-        pictureRepository.flush();
-        newsRepository.flush();
+        newsRepository.saveAndFlush(news);
+        
+        for (Category c : categories) {
+            c.addUutinen(news);
+            categoryRepository.saveAndFlush(c);
+        }
+        
+        for (Writer w : writers) {
+            w.addUutinen(news);
+            writerRepository.saveAndFlush(w);
+        }
 
         return "redirect:/"; // to news id
     }

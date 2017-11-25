@@ -1,6 +1,7 @@
 package dopenews.domain;
 
 import java.util.List;
+import java.util.ArrayList;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
@@ -13,11 +14,22 @@ public class Writer extends AbstractPersistable<Long> {
     @ManyToMany
     private List<News> uutiset;
 
+    public void addUutinen(News news) {
+        if (uutiset == null) {
+            uutiset = new ArrayList();
+        }
+
+        uutiset.add(news);
+    }
+
     public String getNimi() {
         return nimi;
     }
 
     public List<News> getUutiset() {
+        if (uutiset == null) {
+            return new ArrayList();
+        }
         return uutiset;
     }
 
