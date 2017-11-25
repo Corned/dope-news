@@ -6,32 +6,32 @@ import java.util.ArrayList;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
 @Entity
 public class Category extends AbstractPersistable<Long> {
     private String kategoria;
     @ManyToMany
-    private List<News> uutiset;
+    private List<News> uutiset_;
+
+    public Category() {
+        uutiset_ = new ArrayList();
+    }
 
     public void addUutinen(News news) {
-        if (uutiset == null) {
-            uutiset = new ArrayList();
+        if (uutiset_ == null) {
+            uutiset_ = new ArrayList();
         }
 
-        uutiset.add(news);
+        uutiset_.add(news);
     }
 
     public String getKategoria() {
         return kategoria;
     }
 
-    public List<News> getUutiset() {
-        return uutiset;
+    public List<News> getuutiset_() {
+        return uutiset_;
     }
 
 
@@ -39,7 +39,7 @@ public class Category extends AbstractPersistable<Long> {
         this.kategoria = kategoria;
     }
 
-    public void setUutiset(List<News> uutiset) {
-        this.uutiset = uutiset;
+    public void setuutiset_(List<News> uutiset_) {
+        this.uutiset_ = uutiset_;
     }
 }
