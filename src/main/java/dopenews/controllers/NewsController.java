@@ -114,4 +114,11 @@ public class NewsController {
 
         return "redirect:/"; // to news id
     }
+
+    @GetMapping("/article/{id}")
+    public String showArticle(Model model, @PathVariable long id) {
+        model.addAttribute("article", newsRepository.findOne(id));
+
+        return "article";
+    }
 }

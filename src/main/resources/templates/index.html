@@ -34,28 +34,4 @@
 
 
     <div th:replace="fragments/scripts">...</div>
-    
-    <script th:inline="javascript">
-        /*<![CDATA[*/
-        $(document).ready(function() {
-            $(".writer-multi-input").on("input", function() {
-                var text = this.value.trim();
-                var keywords = text.split(",");
-    
-                if (keywords.length > 1) {
-                    this.value = keywords[keywords.length - 1];
-                    for (var i = 0; i < keywords.length - 1; i++) {
-                        var keyword = keywords[i].trim();
-                        if ( keyword.length > 0) {
-                            $(".added-writers").append("<div class=\"added-item\">"
-                                +  keyword
-                            + "</div>");
-                            $(".added-writers").append(`<input type="hidden" name="kirjoittajat" value="${keyword}"/>`);
-                        }
-                    }
-                }
-            });
-        });
-        /*]]>*/
-    </script>
 </html>

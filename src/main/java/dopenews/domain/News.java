@@ -34,7 +34,7 @@ public class News extends AbstractPersistable<Long> {
         return kuva;
     }
 
-    public String leipateksti() {
+    public String getLeipateksti() {
         return leipateksti;
     }
 

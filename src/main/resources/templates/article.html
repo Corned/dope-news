@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <div th:replace="fragments/head">...</div>
+
+    <body>
+        <div th:replace="fragments/navigation">...</div>
+    </body>
+
+    <center>  
+        <div class="card">
+            <h1><span th:text="${article.otsikko}">...</span></h1>
+            <div class="image-container">
+                <img class="image" th:src="@{${'/image/' + article.kuva.id}}"/>
+            </div>
+
+            <p class="julkaisuaika" th:text="'Julkaistu ' + ${article.julkaisuaika}">...</p>
+            <!-- Container for categories -->
+            <div>
+                <span class="category-pill" th:each="c : ${article.kategoriat}" th:text="${c.kategoria}">...</span>
+            </div>
+
+            <h3>
+                <span th:text="${article.ingressi}">...</span>
+            </h3>
+
+            <p class="leipateksti" th:text="${article.leipateksti}">...</p>
+
+            <!-- Container for writers -->
+            <div>
+                <span class="writer-pill" th:each="w : ${article.kirjoittajat}" th:text="${w.nimi}">...</span>
+            </div>
+        </div>
+    </center>
+
+
+    <div th:replace="fragments/scripts">...</div>
+</html>
