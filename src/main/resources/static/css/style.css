@@ -9,9 +9,9 @@ html * {
 }
 
 body {
-    margin: 0px;
     background-color: rgb(250, 250, 250);
     height: 5000px;
+    margin: 0px;
 }
 
 h1 {
@@ -24,25 +24,22 @@ a {
 }
 
 input, textarea {
+    -webkit-appearance: none;
     background-color: white;
     border-color: #dddddd;
+    border-radius: 10px;
     border-style: solid;
     border-width: 2px;
-    border-radius: 10px;
     box-shadow: none !important;
     display: block;
-    width: 100%;
-
     font-size: 17px;
-
     margin-bottom: 10px;
+    outline: none !important;
     padding-left: 5px;
     padding-right: 5px;
-    text-align: left;
-
-    outline: none !important;
-    -webkit-appearance: none;
     resize: none;
+    text-align: left;
+    width: 100%;
 }
 
 
@@ -66,41 +63,41 @@ input, textarea {
 
 .categories, .writers {
     display: flex;
-    justify-content: center;
     flex-wrap: wrap;
+    justify-content: center;
     width: 100%;
 }
 
 .flex-item {
-    width: auto;
     background-color: rgb(204, 204, 204);
     border-radius: 500px;
-    padding: 10px 20px;
-    margin: 5px 5px;
     font-weight: bolder;
+    margin: 5px 5px;
+    padding: 10px 20px;
+    width: auto;
 }
 
 /* HEADER & NAVIGATION */
 .header {
     background-color: rgb(255, 75, 75);
-    padding-top: 5px;
     padding-bottom: 5px;
+    padding-top: 5px;
     z-index: 5
 }
 
 .header > h1 {
-    z-index: 6;
     padding: 0px;
+    z-index: 6;
 }
 
 .navigation-bar {
+    background-color: rgb(255, 75, 75);
+    box-shadow: 0px 3px 3px -2px grey;
     list-style-type: none;
     margin: 0;
     padding: 0;
-    background-color: rgb(255, 75, 75);
     width: 100%;
     z-index: 3;
-    box-shadow: 0px 3px 3px -2px grey;
 }
 
 .navigation-button {
@@ -109,10 +106,10 @@ input, textarea {
 }
 
 .navigation-button > a {
-    display: block;
     background-color: inherit;
-    text-align: center;
+    display: block;
     padding: 14px 16px;
+    text-align: center;
     text-decoration: none;
     z-index: 5;
 }
@@ -133,8 +130,8 @@ input, textarea {
 
 .multi-input {
     max-width: 100%;
-    width: 50%;
     padding: 20px;
+    width: 50%;
 }
 
 .writer-multi-input, .category-multi-input {
