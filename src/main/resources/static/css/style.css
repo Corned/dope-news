@@ -9,12 +9,12 @@ html * {
 }
 
 body {
-    background-color: rgb(250, 250, 250);
+    background-color: rgb(240, 240, 240);
     height: 5000px;
     margin: 0px;
 }
 
-h1 {
+h1, h2, h3 {
     font-weight: bolder;
 }
 
@@ -136,4 +136,34 @@ input, textarea {
 
 .writer-multi-input, .category-multi-input {
     text-align: center;
+}
+
+
+
+.news-container {
+    background-color: rgb(255, 255, 255);
+    box-shadow: 2px 3px 2px rgba(0, 0, 0, 0.15);
+    padding: 10px;
+    width: 900px;
+}
+
+.news-container > h1, .news-container > h3 {
+    text-align: left;
+    padding: 0px;
+    margin: 0px;
+}
+
+.image-container {
+    background-color: black;
+    margin-bottom: 15px;
+    margin-top: 15px;
+    width: 100%; 
+}
+
+.image {
+    display: block; 
+    height: auto;
+    max-height: 300px; 
+    max-width: 900px; 
+    width: auto; 
 }

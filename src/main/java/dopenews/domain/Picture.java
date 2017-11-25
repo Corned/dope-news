@@ -11,6 +11,8 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 public class Picture extends AbstractPersistable<Long> {
     private News uutiset;
     private String nimi;
+    private String mediaType;
+    private Long contentLength;
     
     @Lob
     @Basic(fetch = FetchType.LAZY)
@@ -24,6 +26,14 @@ public class Picture extends AbstractPersistable<Long> {
         return nimi;
     }
 
+    public String getMediaType() {
+        return mediaType;
+    }
+
+    public Long getContentLength() {
+        return contentLength;
+    }
+
     public byte[] getData() {
         return data;
     }
@@ -35,6 +45,14 @@ public class Picture extends AbstractPersistable<Long> {
 
     public void setNimi(String nimi) {
         this.nimi = nimi;
+    }
+
+    public void setMediaType(String mediaType) {
+        this.mediaType = mediaType;
+    }
+
+    public void setContentLength(Long contentLength) {
+        this.contentLength = contentLength;
     }
 
     public void setData(byte[] data) {

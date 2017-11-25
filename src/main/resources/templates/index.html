@@ -6,5 +6,47 @@
         <div th:replace="fragments/navigation">...</div>
     </body>
 
+    <center>
+            
+        <ul>
+            <li th:each="n : ${news}">
+                <div class="news-container">
+                    <h1><span th:text="${n.otsikko}">...</span></h1>
+                    <div class="image-container">
+                        <img class="image" th:src="@{${'/image/' + n.kuva.id}}"/>
+                    </div>
+                    <h3><span th:text="${n.ingressi}">...</span></h3>
+                </div>
+            </li>
+        </ul>
+        
+        <ul>
+            <li th:each="n : ${news}">
+                <div class="news-container">
+                    <h1><span th:text="${n.otsikko}">...</span></h1>
+                    <div class="image-container">
+                        <img class="image" th:src="@{${'/image/' + n.kuva.id}}"/>
+                    </div>
+                    <h3><span th:text="${n.ingressi}">...</span></h3>
+                </div>
+            </li>
+        </ul>
+        
+
+        <ul>
+            <li th:each="n : ${news}">
+                <div class="news-container">
+                    <h1><span th:text="${n.otsikko}">...</span></h1>
+                    <div class="image-container">
+                        <img class="image" th:src="@{${'/image/' + n.kuva.id}}"/>
+                    </div>
+                    <h3><span th:text="${n.ingressi}">...</span></h3>
+                </div>
+            </li>
+        </ul>
+
+    </center>
+
+
     <div th:replace="fragments/scripts">...</div>
 </html>

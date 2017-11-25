@@ -9,8 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import dopenews.repository.CategoryRepository;
@@ -30,9 +32,15 @@ public class NewsController {
     @Autowired
     private CategoryRepository categoryRepository;
 
+    @ResponseBody
+    @GetMapping(path = "/image/{id}", produces = "image/png")
+    public byte[] getImage(@PathVariable long id) {
+        return pictureRepository.findOne(id).getData();
+    }
 
     @GetMapping("/")
     public String list(Model model) {
+        model.addAttribute("news", newsRepository.findAll());
         return "index";
     }
 
@@ -48,11 +56,13 @@ public class NewsController {
 
         Picture picture = new Picture();
         picture.setData(kuva.getBytes());
+        picture.setMediaType(kuva.getContentType());
+        picture.setContentLength(kuva.getSize());
         pictureRepository.save(picture);
         
         List<Writer> writers = new ArrayList();
         for (int index = 0; index < kirjoittajat.size(); index++) {
-            String kirjoittajaNimi = kirjoittajat.get(index);
+            String kirjoittajaNimi = kirjoittajat.get(index).toLowerCase();
             if (kirjoittajaNimi.isEmpty()) continue;
 
             Writer writer = writerRepository.findOneByNimi(kirjoittajaNimi);
@@ -60,8 +70,6 @@ public class NewsController {
                 writer = new Writer();
                 writer.setNimi(kirjoittajaNimi);
                 writerRepository.save(writer);
-                
-                System.out.println("Writer " + kirjoittajaNimi + " did not exist, had to create!");
             }
 
             writers.add(writer);
@@ -69,7 +77,7 @@ public class NewsController {
                 
         List<Category> categories = new ArrayList();
         for (int index = 0; index < kategoriat.size(); index++) {
-            String kategoriaNimi = kategoriat.get(index);
+            String kategoriaNimi = kategoriat.get(index).toLowerCase();
             if (kategoriaNimi.isEmpty()) continue;
 
             Category category = categoryRepository.findOneByKategoria(kategoriaNimi);
@@ -77,7 +85,6 @@ public class NewsController {
                 category = new Category();
                 category.setKategoria(kategoriaNimi);
                 categoryRepository.save(category);
-                System.out.println("Category " + kategoriaNimi + " did not exist, had to create!");
             }
 
             categories.add(category);
@@ -98,8 +105,6 @@ public class NewsController {
         categoryRepository.flush();
         pictureRepository.flush();
         newsRepository.flush();
-
-        System.out.println("Done!");
 
         return "redirect:/"; // to news id
     }
