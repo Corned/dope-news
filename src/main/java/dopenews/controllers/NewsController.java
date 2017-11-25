@@ -8,7 +8,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import dopenews.repository.NewsRepository;
@@ -35,11 +34,15 @@ public class NewsController {
             @RequestParam MultipartFile kuva, @RequestParam String leipateksti, 
             @RequestParam List<String> kirjoittajat, @RequestParam List<String> kategoriat) {
 
-        System.out.println(otsikko);
+        News news = new News();
+        news.setOtsikko(otsikko);
+        
+        
+                System.out.println(otsikko);
         System.out.println(ingressi);
         System.out.println(kuva.getOriginalFilename());
         System.out.println(leipateksti);
-        System.out.println(kirjoittajat.size());
+        System.out.println(kirjoittajat);
         System.out.println(kategoriat.size());
         return "redirect:/"; // to news id
     }
