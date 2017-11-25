@@ -7,25 +7,28 @@
         <div th:replace="fragments/navigation">...</div>
 
         <center>
-            <div class="content">
-                <h1 class="left">Luo Uutinen</h1>
-                <!-- Otsikko, Ingressi, Kuva, Leipäteksti, Julkaisuaika, kirjoittajat, kategoriat -->
+            <div class="card">
+                <h1>Luo Uutinen</h1>
+                
                 <form th:action="@{/luo}" th:method="POST" id="news-form" enctype="multipart/form-data">
-                    <input type="text" name="otsikko" placeholder="Otsikko"/>
+                    <textarea name="otsikko" rows="1" cols="50" placeholder="Otsikko"/>
                     <textarea name="ingressi" rows="2" cols="50" placeholder="Ingressi"/>
                     <textarea name="leipateksti" rows="4" cols="50" placeholder="Leipäteksti"/>
-                    <!-- julkaisuaika backend -->
                     <input type="file" name="kuva"/>
 
-                    <div class="multi-input-container">
-                        <div th:replace="fragments/kirjoittaja-input">...</div>
-                        <div th:replace="fragments/kategoria-input">...</div>
+                    <div style="display: flex;">
+                        <div th:replace="fragments/writer-input">...</div>
+                        <div th:replace="fragments/category-input">...</div>
                     </div>
 
+                    <!-- required -->
                     <input type="hidden" value="" name="kategoriat"/>
-                    <input type="hidden" value="" name="kirjoittajat"/>                    
-                    <input type="submit" value="Submit!"/>
+                    <input type="hidden" value="" name="kirjoittajat"/>        
+                    <!-- required -->
+
+                    <input class="btn" type="submit" value="Submit!"/>
                 </form>
+
             </div>
         </center>
     </body>

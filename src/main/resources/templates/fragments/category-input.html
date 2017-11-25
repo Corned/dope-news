@@ -1,14 +1,14 @@
 <div class="multi-input">
-    <h2>Lisää Kirjoittajat</h2>
-    <input type="text" class="writer-multi-input" placeholder="Erottele kirjoittajat pilkulla"/>
+    <h2>Syötä Kategoriat</h2>
+    <input type="text" class="category-multi-input" placeholder="Erottele kategoriat pilkulla"/>
 
-    <div class="writers"></div>
+    <div class="added-categories"></div>
 </div>
 
 <script th:inline="javascript">
     /*<![CDATA[*/
     $(document).ready(function() {
-        $(".writer-multi-input").on("input", function() {
+        $(".category-multi-input").on("input", function() {
             var text = this.value.trim();
             var keywords = text.split(",");
 
@@ -16,11 +16,11 @@
                 this.value = keywords[keywords.length - 1];
                 for (var i = 0; i < keywords.length - 1; i++) {
                     var keyword = keywords[i].trim();
-                    if ( keyword.length > 0) {
-                        $(".writers").append("<div class=\"flex-item\">"
-                            +  keyword
+                    if (keyword.length > 0) {
+                        $(".added-categories").append("<div class=\"added-item\">"
+                            + keyword
                         + "</div>");
-                        $(".writers").append(`<input type="hidden" name="kirjoittajat" value="${keyword}"/>`);
+                        $(".added-categories").append(`<input type="hidden" name="kategoriat" value="${keyword}"/>`);
                     }
                 }
             }

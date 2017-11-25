@@ -10,18 +10,22 @@
                     
         <ul>
             <li th:each="n : ${news}">
-                <div class="news-container">
+                <div class="card">
                     <h1><span th:text="${n.otsikko}">...</span></h1>
                     <div class="image-container">
                         <img class="image" th:src="@{${'/image/' + n.kuva.id}}"/>
                     </div>
-                    <div class="test-1">
-                        <span class="test-2" th:each="c : ${n.kategoriat}" th:text="${c.kategoria}">...</span>
+
+                    <!-- Container for categories -->
+                    <div>
+                        <span class="category-pill" th:each="c : ${n.kategoriat}" th:text="${c.kategoria}">...</span>
                     </div>
-           
+        
                     <h3>
                         <span th:text="${n.ingressi}">...</span>
                     </h3>
+
+                    <a class="btn" th:href="@{${'/article/' + n.id}}">Lue lisää!</a>
                 </div>
             </li>
         </ul>
@@ -30,4 +34,28 @@
 
 
     <div th:replace="fragments/scripts">...</div>
+    
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+        $(document).ready(function() {
+            $(".writer-multi-input").on("input", function() {
+                var text = this.value.trim();
+                var keywords = text.split(",");
+    
+                if (keywords.length > 1) {
+                    this.value = keywords[keywords.length - 1];
+                    for (var i = 0; i < keywords.length - 1; i++) {
+                        var keyword = keywords[i].trim();
+                        if ( keyword.length > 0) {
+                            $(".added-writers").append("<div class=\"added-item\">"
+                                +  keyword
+                            + "</div>");
+                            $(".added-writers").append(`<input type="hidden" name="kirjoittajat" value="${keyword}"/>`);
+                        }
+                    }
+                }
+            });
+        });
+        /*]]>*/
+    </script>
 </html>
