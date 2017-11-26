@@ -11,7 +11,7 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 @Entity
 public class Writer extends AbstractPersistable<Long> {
     private String nimi;
-    @ManyToMany
+    @ManyToMany(mappedBy = "kirjoittajat")
     private List<News> uutiset;
 
     public Writer() {
