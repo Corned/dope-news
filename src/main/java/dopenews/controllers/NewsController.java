@@ -70,10 +70,6 @@ public class NewsController {
                 writer = new Writer();
                 writer.setNimi(kirjoittajaNimi);
                 writerRepository.saveAndFlush(writer);
-            } else {
-                System.out.println("old writer!");
-                System.out.println(writer.getNimi());
-                System.out.println(writer.getUutiset().size() + " uutista");
             }
 
             writers.add(writer);
@@ -105,12 +101,12 @@ public class NewsController {
         newsRepository.saveAndFlush(news);
 
         for (Category c : categories) {
-            c.addUutinen(news);
+            //c.addUutinen(news);
             categoryRepository.save(c);
         }
 
         for (Writer w : writers) {
-            w.addUutinen(news);
+            //w.addUutinen(news);
             writerRepository.save(w);
         }
 
