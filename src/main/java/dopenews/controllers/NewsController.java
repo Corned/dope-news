@@ -2,8 +2,8 @@ package dopenews.controllers;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,14 +12,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import dopenews.domain.Category;
+import dopenews.domain.News;
+import dopenews.domain.Picture;
+import dopenews.domain.Writer;
 import dopenews.repository.CategoryRepository;
 import dopenews.repository.NewsRepository;
 import dopenews.repository.PictureRepository;
 import dopenews.repository.WriterRepository;
-import dopenews.domain.*;
 
 @Controller
 public class NewsController {
@@ -31,12 +33,6 @@ public class NewsController {
     private WriterRepository writerRepository;
     @Autowired
     private CategoryRepository categoryRepository;
-
-    @ResponseBody
-    @GetMapping(path = "/image/{id}", produces = "image/png")
-    public byte[] getImage(@PathVariable long id) {
-        return pictureRepository.findOne(id).getData();
-    }
 
     @GetMapping("/")
     public String list(Model model) {
@@ -50,8 +46,8 @@ public class NewsController {
     }
 
     @PostMapping("/luo")
-    public String luoPOST(@RequestParam String otsikko, @RequestParam String ingressi, 
-            @RequestParam MultipartFile kuva, @RequestParam String leipateksti, 
+    public String luoPOST(@RequestParam String otsikko, @RequestParam String ingressi,
+            @RequestParam MultipartFile kuva, @RequestParam String leipateksti,
             @RequestParam List<String> kirjoittajat, @RequestParam List<String> kategoriat) throws IOException {
 
         Picture picture = new Picture();
@@ -61,22 +57,28 @@ public class NewsController {
         pictureRepository.save(picture);
 
         News news = new News();
-        
+
         List<Writer> writers = new ArrayList();
         for (int index = 0; index < kirjoittajat.size(); index++) {
             String kirjoittajaNimi = kirjoittajat.get(index).toLowerCase();
             if (kirjoittajaNimi.isEmpty()) continue;
 
             Writer writer = writerRepository.findOneByNimi(kirjoittajaNimi);
+            System.out.println(writer);
             if (writer == null) {
+                System.out.println("NEW!");
                 writer = new Writer();
                 writer.setNimi(kirjoittajaNimi);
                 writerRepository.saveAndFlush(writer);
+            } else {
+                System.out.println("old writer!");
+                System.out.println(writer.getNimi());
+                System.out.println(writer.getUutiset().size() + " uutista");
             }
 
             writers.add(writer);
         }
-                
+
         List<Category> categories = new ArrayList();
         for (int index = 0; index < kategoriat.size(); index++) {
             String kategoriaNimi = kategoriat.get(index).toLowerCase();
@@ -101,12 +103,12 @@ public class NewsController {
         news.setJulkaisuaika(new Date());
 
         newsRepository.saveAndFlush(news);
-        
+
         for (Category c : categories) {
             c.addUutinen(news);
             categoryRepository.save(c);
         }
-        
+
         for (Writer w : writers) {
             w.addUutinen(news);
             writerRepository.save(w);

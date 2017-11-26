@@ -13,4 +13,10 @@ import dopenews.repository.PictureRepository;
 public class PictureController {
     @Autowired
     private PictureRepository pictureRepository;
+
+    @ResponseBody
+    @GetMapping(path = "/image/{id}", produces = "image/png")
+    public byte[] getImage(@PathVariable long id) {
+        return pictureRepository.findOne(id).getData();
+    }
 }
