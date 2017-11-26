@@ -7,6 +7,11 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 
+import javax.persistence.Basic;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Lob;
+
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
 @Entity
@@ -14,6 +19,8 @@ public class News extends AbstractPersistable<Long> {
     private String otsikko;
     private String ingressi;
     @OneToOne
+    @Lob
+    @Basic(fetch = FetchType.LAZY)
     private Picture kuva;
     private String leipateksti;
     private Date julkaisuaika;
