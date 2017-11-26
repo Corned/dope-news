@@ -24,9 +24,9 @@ public class News extends AbstractPersistable<Long> {
     private Picture kuva;
     private String leipateksti;
     private Date julkaisuaika;
-    @ManyToMany(mappedBy = "uutiset")
+    @ManyToMany
     private List<Writer> kirjoittajat;
-    @ManyToMany(mappedBy = "uutiset_")
+    @ManyToMany
     private List<Category> kategoriat;
     
     public String getOtsikko() {
