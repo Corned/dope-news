@@ -106,7 +106,7 @@ public class NewsController {
         }
 
         for (Writer w : writers) {
-            //w.addUutinen(news);
+            w.addUutinen(news);
             writerRepository.save(w);
         }
 
