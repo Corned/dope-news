@@ -9,8 +9,8 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 
 @Entity
 public class Picture extends AbstractPersistable<Long> {
-    private News uutiset;
-    private String nimi;
+    private Article article;
+    private String name;
     private String mediaType;
     private Long contentLength;
     
@@ -18,12 +18,12 @@ public class Picture extends AbstractPersistable<Long> {
     @Basic(fetch = FetchType.LAZY)
     private byte[] data;
 
-    public News getUutiset() {
-        return uutiset;
+    public Article getArticle() {
+        return article;
     }
 
-    public String getNimi() {
-        return nimi;
+    public String getName() {
+        return name;
     }
 
     public String getMediaType() {
@@ -39,12 +39,12 @@ public class Picture extends AbstractPersistable<Long> {
     }
 
 
-    public void setUutiset(News uutiset) {
-        this.uutiset = uutiset;
+    public void setArticle(Article article) {
+        this.article = article;
     }
 
-    public void setNimi(String nimi) {
-        this.nimi = nimi;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public void setMediaType(String mediaType) {

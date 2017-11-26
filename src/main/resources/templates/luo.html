@@ -11,10 +11,10 @@
                 <h1>Luo Uutinen</h1>
                 
                 <form th:action="@{/luo}" th:method="POST" id="news-form" enctype="multipart/form-data">
-                    <textarea name="otsikko" rows="1" cols="50" placeholder="Otsikko"/>
-                    <textarea name="ingressi" rows="2" cols="50" placeholder="Ingressi"/>
-                    <textarea name="leipateksti" rows="4" cols="50" placeholder="Leipäteksti"/>
-                    <input type="file" name="kuva"/>
+                    <textarea name="headline" rows="1" cols="50" placeholder="Otsikko"/>
+                    <textarea name="lead" rows="2" cols="50" placeholder="Ingressi"/>
+                    <textarea name="body" rows="4" cols="50" placeholder="Leipäteksti"/>
+                    <input type="file" name="picture"/>
 
                     <div style="display: flex;">
                         <div th:replace="fragments/writer-input">...</div>
@@ -22,8 +22,8 @@
                     </div>
 
                     <!-- required -->
-                    <input type="hidden" value="" name="kategoriat"/>
-                    <input type="hidden" value="" name="kirjoittajat"/>        
+                    <input type="hidden" value="" name="categories"/>
+                    <input type="hidden" value="" name="writers"/>        
                     <!-- required -->
 
                     <input class="btn" type="submit" value="Submit!"/>

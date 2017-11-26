@@ -9,23 +9,23 @@
     <center>
                     
         <ul>
-            <li th:each="n : ${news}">
+            <li th:each="article : ${articles}">
                 <div class="card">
-                    <h1><span th:text="${n.otsikko}">...</span></h1>
+                    <h1><span th:text="${article.headline}">...</span></h1>
                     <div class="image-container">
-                        <img class="image" th:src="@{${'/image/' + n.kuva.id}}"/>
+                        <img class="image" th:src="@{${'/image/' + article.picture.id}}"/>
                     </div>
 
                     <!-- Container for categories -->
                     <div>
-                        <span class="category-pill" th:each="c : ${n.kategoriat}" th:text="${c.kategoria}">...</span>
+                        <span class="category-pill" th:each="category : ${article.categories}" th:text="${category.category}">...</span>
                     </div>
         
                     <h3>
-                        <span th:text="${n.ingressi}">...</span>
+                        <span th:text="${article.lead}">...</span>
                     </h3>
 
-                    <a class="btn" th:href="@{${'/article/' + n.id}}">Lue lisää!</a>
+                    <a class="btn" th:href="@{${'/article/' + article.id}}">Lue lisää!</a>
                 </div>
             </li>
         </ul>

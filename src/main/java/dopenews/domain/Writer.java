@@ -10,32 +10,32 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 
 @Entity
 public class Writer extends AbstractPersistable<Long> {
-    private String nimi;
-    @ManyToMany(mappedBy = "kirjoittajat")
-    private List<News> uutiset;
+    private String name;
+    @ManyToMany(mappedBy = "writers")
+    private List<Article> articles;
 
     public Writer() {
-        uutiset = new ArrayList();
+        articles = new ArrayList();
     }
 
-    public void addUutinen(News news) {
-        uutiset.add(news);
+    public void addArticle(Article article) {
+        articles.add(article);
     }
 
-    public String getNimi() {
-        return nimi;
+    public String getName() {
+        return name;
     }
 
-    public List<News> getUutiset() {
-        return uutiset;
+    public List<Article> getArticles() {
+        return articles;
     }
 
 
-    public void setNimi(String nimi) {
-        this.nimi = nimi;
+    public void setName(String name) {
+        this.name = name;
     }
     
-    public void setUutiset(List<News> uutiset) {
-        this.uutiset = uutiset;
+    public void setArticles(List<Article> articles) {
+        this.articles = articles;
     }
 }

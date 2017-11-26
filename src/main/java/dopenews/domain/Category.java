@@ -10,32 +10,32 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 
 @Entity
 public class Category extends AbstractPersistable<Long> {
-    private String kategoria;
-    @ManyToMany(mappedBy = "kategoriat")
-    private List<News> uutiset;
+    private String category;
+    @ManyToMany(mappedBy = "categories")
+    private List<Article> articles;
 
     public Category() {
-        uutiset = new ArrayList();
+        articles = new ArrayList();
     }
 
-    public void addUutinen(News news) {
-        uutiset.add(news);
+    public void addArticle(Article article) {
+        articles.add(article);
     }
 
-    public String getKategoria() {
-        return kategoria;
+    public String getCategory() {
+        return category;
     }
 
-    public List<News> getUutiset() {
-        return uutiset;
+    public List<Article> getArticles() {
+        return articles;
     }
 
 
-    public void setKategoria(String kategoria) {
-        this.kategoria = kategoria;
+    public void setCategory(String category) {
+        this.category = category;
     }
 
-    public void setUutiset(List<News> uutiset) {
-        this.uutiset = uutiset;
+    public void setArticles(List<Article> articles) {
+        this.articles = articles;
     }
 }

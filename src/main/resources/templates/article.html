@@ -8,26 +8,26 @@
 
     <center>  
         <div class="card">
-            <h1><span th:text="${article.otsikko}">...</span></h1>
+            <h1><span th:text="${article.headline}">...</span></h1>
             <div class="image-container">
-                <img class="image" th:src="@{${'/image/' + article.kuva.id}}"/>
+                <img class="image" th:src="@{${'/image/' + article.picture.id}}"/>
             </div>
 
-            <p class="julkaisuaika" th:text="'Julkaistu ' + ${article.julkaisuaika}">...</p>
+            <p class="julkaisuaika" th:text="'Julkaistu ' + ${article.date}">...</p>
             <!-- Container for categories -->
             <div>
-                <span class="category-pill" th:each="c : ${article.kategoriat}" th:text="${c.kategoria}">...</span>
+                <span class="category-pill" th:each="category : ${article.categories}" th:text="${category.category}">...</span>
             </div>
 
             <h3>
-                <span th:text="${article.ingressi}">...</span>
+                <span th:text="${article.lead}">...</span>
             </h3>
 
-            <p class="leipateksti" th:text="${article.leipateksti}">...</p>
+            <p class="leipateksti" th:text="${article.body}">...</p>
 
             <!-- Container for writers -->
             <div>
-                <span class="writer-pill" th:each="w : ${article.kirjoittajat}" th:text="${w.nimi}">...</span>
+                <span class="writer-pill" th:each="writer : ${article.writers}" th:text="${writer.name}">...</span>
             </div>
         </div>
     </center>
