@@ -19,10 +19,6 @@ public class Category extends AbstractPersistable<Long> {
     }
 
     public void addUutinen(News news) {
-        if (uutiset_ == null) {
-            uutiset_ = new ArrayList();
-        }
-
         uutiset_.add(news);
     }
 

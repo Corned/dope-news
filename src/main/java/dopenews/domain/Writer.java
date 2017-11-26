@@ -14,11 +14,11 @@ public class Writer extends AbstractPersistable<Long> {
     @ManyToMany
     private List<News> uutiset;
 
-    public void addUutinen(News news) {
-        if (uutiset == null) {
-            uutiset = new ArrayList();
-        }
+    public Writer() {
+        uutiset = new ArrayList();
+    }
 
+    public void addUutinen(News news) {
         uutiset.add(news);
     }
 
@@ -27,9 +27,6 @@ public class Writer extends AbstractPersistable<Long> {
     }
 
     public List<News> getUutiset() {
-        if (uutiset == null) {
-            return new ArrayList();
-        }
         return uutiset;
     }
 

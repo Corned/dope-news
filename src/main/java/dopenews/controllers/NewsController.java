@@ -101,12 +101,12 @@ public class NewsController {
         newsRepository.saveAndFlush(news);
 
         for (Category c : categories) {
-            //c.addUutinen(news);
+            c.addUutinen(news);
             categoryRepository.save(c);
         }
 
         for (Writer w : writers) {
-            w.addUutinen(news);
+            //w.addUutinen(news);
             writerRepository.save(w);
         }
 
