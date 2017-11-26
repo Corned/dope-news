@@ -104,13 +104,16 @@ public class NewsController {
         
         for (Category c : categories) {
             c.addUutinen(news);
-            categoryRepository.saveAndFlush(c);
+            categoryRepository.save(c);
         }
         
         for (Writer w : writers) {
             w.addUutinen(news);
-            writerRepository.saveAndFlush(w);
+            writerRepository.save(w);
         }
+
+        categoryRepository.flush();
+        writerRepository.flush();
 
         return "redirect:/"; // to news id
     }
