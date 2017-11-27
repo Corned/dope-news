@@ -37,9 +37,6 @@ repositories {
 mainClassName='dopenews.Main'
 
 dependencies {
-	compileOnly 'org.projectlombok:lombok:1.16.18'
-	apt "org.projectlombok:lombok:1.16.18"
-
     compile("org.springframework.boot:spring-boot-starter-web")
     compile("org.springframework.boot:spring-boot-starter-thymeleaf")
     compile("nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect")
