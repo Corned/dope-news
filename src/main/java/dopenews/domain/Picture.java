@@ -6,6 +6,7 @@ import javax.persistence.FetchType;
 import javax.persistence.Lob;
 
 import org.springframework.data.jpa.domain.AbstractPersistable;
+import org.springframework.transaction.annotation.Transactional;
 
 @Entity
 public class Picture extends AbstractPersistable<Long> {
@@ -38,23 +39,27 @@ public class Picture extends AbstractPersistable<Long> {
         return data;
     }
 
-
+    @Transactional
     public void setArticle(Article article) {
         this.article = article;
     }
 
+    @Transactional
     public void setName(String name) {
         this.name = name;
     }
 
+    @Transactional
     public void setMediaType(String mediaType) {
         this.mediaType = mediaType;
     }
 
+    @Transactional
     public void setContentLength(Long contentLength) {
         this.contentLength = contentLength;
     }
 
+    @Transactional
     public void setData(byte[] data) {
         this.data = data;
     }

@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 
 import org.springframework.data.jpa.domain.AbstractPersistable;
+import org.springframework.transaction.annotation.Transactional;
 
 @Entity
 public class Category extends AbstractPersistable<Long> {
@@ -18,10 +19,6 @@ public class Category extends AbstractPersistable<Long> {
         articles = new ArrayList();
     }
 
-    public void addArticle(Article article) {
-        articles.add(article);
-    }
-
     public String getCategory() {
         return category;
     }
@@ -30,12 +27,18 @@ public class Category extends AbstractPersistable<Long> {
         return articles;
     }
 
-
+    @Transactional
     public void setCategory(String category) {
         this.category = category;
     }
 
+    @Transactional
     public void setArticles(List<Article> articles) {
         this.articles = articles;
+    }
+    
+    @Transactional
+    public void addArticle(Article article) {
+        articles.add(article);
     }
 }
