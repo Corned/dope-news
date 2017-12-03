@@ -40,12 +40,12 @@ public class ArticleController {
         return "index";
     }
 
-    @GetMapping("/luo")
+    @GetMapping("/create")
     public String luoGET() {
         return "luo";
     }
 
-    @PostMapping("/luo")
+    @PostMapping("/create")
     public String luoPOST(@RequestParam("headline") String headline_, @RequestParam("lead") String lead_,
             @RequestParam("picture") MultipartFile picture_, @RequestParam("body") String body_,
             @RequestParam("writers") List<String> writers_, @RequestParam("categories") List<String> categories_) throws IOException {

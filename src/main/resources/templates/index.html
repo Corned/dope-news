@@ -4,33 +4,33 @@
 
     <body>
         <div th:replace="fragments/navigation">...</div>
+
+        <center>
+            <ul>
+                <li th:each="article : ${articles}">
+                    <div class="card">
+                        <h1><span th:text="${article.headline}">...</span></h1>
+                        <div class="image-container">
+                            <img class="image" th:src="@{${'/image/' + article.picture.id}}"/>
+                        </div>
+
+                        <!-- Container for categories -->
+                        <div>
+                            <span class="category-pill" th:each="category : ${article.categories}" th:text="${category.category}">...</span>
+                        </div>
+            
+                        <h3>
+                            <span th:text="${article.lead}">...</span>
+                        </h3>
+
+                        <a class="btn" th:href="@{${'/article/' + article.id}}">Lue lisää!</a>
+                    </div>
+                </li>
+            </ul>
+        </center>
+
+        <div th:replace="fragments/footer">...</div>
     </body>
-
-    <center>
-                    
-        <ul>
-            <li th:each="article : ${articles}">
-                <div class="card">
-                    <h1><span th:text="${article.headline}">...</span></h1>
-                    <div class="image-container">
-                        <img class="image" th:src="@{${'/image/' + article.picture.id}}"/>
-                    </div>
-
-                    <!-- Container for categories -->
-                    <div>
-                        <span class="category-pill" th:each="category : ${article.categories}" th:text="${category.category}">...</span>
-                    </div>
-        
-                    <h3>
-                        <span th:text="${article.lead}">...</span>
-                    </h3>
-
-                    <a class="btn" th:href="@{${'/article/' + article.id}}">Lue lisää!</a>
-                </div>
-            </li>
-        </ul>
-        
-    </center>
 
 
     <div th:replace="fragments/scripts">...</div>

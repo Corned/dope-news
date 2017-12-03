@@ -6,30 +6,43 @@
     <body>
         <div th:replace="fragments/navigation">...</div>
 
-        <center>
-            <div class="card">
-                <h1>Luo Uutinen</h1>
-                
-                <form th:action="@{/luo}" th:method="POST" id="news-form" enctype="multipart/form-data">
-                    <textarea name="headline" rows="1" cols="50" placeholder="Otsikko"/>
-                    <textarea name="lead" rows="2" cols="50" placeholder="Ingressi"/>
-                    <textarea name="body" rows="4" cols="50" placeholder="Leipäteksti"/>
-                    <input type="file" name="picture"/>
-
-                    <div style="display: flex;">
-                        <div th:replace="fragments/writer-input">...</div>
-                        <div th:replace="fragments/category-input">...</div>
-                    </div>
-
-                    <!-- required -->
-                    <input type="hidden" value="" name="categories"/>
-                    <input type="hidden" value="" name="writers"/>        
-                    <!-- required -->
-
-                    <input class="btn" type="submit" value="Submit!"/>
-                </form>
-
+        <h1 class="jumbotron">Luo Uutinen</h1>
+        <div class="content-container">
+            <h2>Valitse Kategoria</h2>
+            <div class="category-selector">
+                <button class="category-select-button" id="kirja">Uutiset</button>
+                <button class="category-select-button" id="youtube">Viihde</button>
+                <button class="category-select-button" id="podcast">Urheilu</button>
+                <button class="category-select-button" id="elokuva">Talous</button>
+                <button class="category-select-button" id="peli">Lifestyle</button>
+                <button class="category-select-button" id="urheilulaji">Digi</button>
+                <button class="category-select-button" id="kuulento">Autot</button>
             </div>
-        </center>
+            <form class="flex-form" th:action="@{/luo}" th:method="POST" id="news-form" enctype="multipart/form-data">
+                <input type="hidden" id="category"/>
+
+                <textarea name="headline" rows="1" cols="50" placeholder="Otsikko"/>
+                <p class="counter">0/255</p>
+                <textarea name="lead" rows="2" cols="50" placeholder="Ingressi"/>
+                <p class="counter">0/255</p>
+                <textarea name="body" rows="4" cols="50" placeholder="Leipäteksti"/>
+                <p class="counter">0/255</p>
+                <input type="file" name="picture"/>
+
+                <div class="multi-input-container">
+                    <div th:replace="fragments/writer-input">...</div>
+                    <div th:replace="fragments/tag-input">...</div>
+                </div>
+
+                <!-- required -->
+                <input type="hidden" value="" name="categories"/>
+                <input type="hidden" value="" name="writers"/>        
+                <!-- required -->
+
+                <input class="btn" type="submit" value="Submit!"/>
+            </form>
+        </div>
+
+        <div th:replace="fragments/footer">...</div>
     </body>
 </html>

@@ -4,34 +4,35 @@
 
     <body>
         <div th:replace="fragments/navigation">...</div>
+
+        <center>  
+            <div class="card">
+                <h1><span th:text="${article.headline}">...</span></h1>
+                <div class="image-container">
+                    <img class="image" th:src="@{${'/image/' + article.picture.id}}"/>
+                </div>
+
+                <p class="julkaisuaika" th:text="'Julkaistu ' + ${article.date}">...</p>
+                <!-- Container for categories -->
+                <div>
+                    <span class="category-pill" th:each="category : ${article.categories}" th:text="${category.category}">...</span>
+                </div>
+
+                <h3>
+                    <span th:text="${article.lead}">...</span>
+                </h3>
+
+                <p class="leipateksti" th:text="${article.body}">...</p>
+
+                <!-- Container for writers -->
+                <div>
+                    <span class="writer-pill" th:each="writer : ${article.writers}" th:text="${writer.name}">...</span>
+                </div>
+            </div>
+        </center>
+
+        <div th:replace="fragments/footer">...</div>
     </body>
-
-    <center>  
-        <div class="card">
-            <h1><span th:text="${article.headline}">...</span></h1>
-            <div class="image-container">
-                <img class="image" th:src="@{${'/image/' + article.picture.id}}"/>
-            </div>
-
-            <p class="julkaisuaika" th:text="'Julkaistu ' + ${article.date}">...</p>
-            <!-- Container for categories -->
-            <div>
-                <span class="category-pill" th:each="category : ${article.categories}" th:text="${category.category}">...</span>
-            </div>
-
-            <h3>
-                <span th:text="${article.lead}">...</span>
-            </h3>
-
-            <p class="leipateksti" th:text="${article.body}">...</p>
-
-            <!-- Container for writers -->
-            <div>
-                <span class="writer-pill" th:each="writer : ${article.writers}" th:text="${writer.name}">...</span>
-            </div>
-        </div>
-    </center>
-
 
     <div th:replace="fragments/scripts">...</div>
 </html>

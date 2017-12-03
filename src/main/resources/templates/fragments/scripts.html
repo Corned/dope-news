@@ -1,2 +1,14 @@
-
 <script th:src="@{https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js}"></script>
+
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    $(document).scroll(function() {
+        var position = $(document).scrollTop();
+        if (position > 0) {
+            $(".navigation-bar").addClass("drop-shadow");
+        } else {
+            $(".navigation-bar").removeClass("drop-shadow");
+        }
+    });
+    /*]]>*/
+</script>
