@@ -35,9 +35,22 @@ public class ArticleController {
     private CategoryRepository categoryRepository;
 
     @GetMapping("/")
-    public String list(Model model) {
+    public String listRecent(Model model) {
+        model.addAttribute("category", "ajankohtaista");
         model.addAttribute("articles", articleRepository.findAll());
-        return "index";
+
+        return "listaus";
+    }
+
+    @GetMapping("/c")
+    public String redirectListRecent() {
+        return "redirect:/";
+    }
+
+    @GetMapping("/c/{category}")
+    public String listCategory(Model model, @PathVariable String category) {
+        model.addAttribute("category", category);
+        return "listaus";
     }
 
     @GetMapping("/create")

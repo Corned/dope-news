@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
     <div th:replace="fragments/head">...</div>
-    <div th:replace="fragments/scripts">...</div>
     
     <body>
         <div th:replace="fragments/navigation">...</div>
@@ -10,13 +9,13 @@
         <div class="content-container">
             <h2>Valitse Kategoria</h2>
             <div class="category-selector">
-                <button class="category-select-button" id="kirja">Uutiset</button>
-                <button class="category-select-button" id="youtube">Viihde</button>
-                <button class="category-select-button" id="podcast">Urheilu</button>
-                <button class="category-select-button" id="elokuva">Talous</button>
-                <button class="category-select-button" id="peli">Lifestyle</button>
-                <button class="category-select-button" id="urheilulaji">Digi</button>
-                <button class="category-select-button" id="kuulento">Autot</button>
+                <button class="category-select-button" id="uutiset">Uutiset</button>
+                <button class="category-select-button" id="viihde">Viihde</button>
+                <button class="category-select-button" id="urheilu">Urheilu</button>
+                <button class="category-select-button" id="talous">Talous</button>
+                <button class="category-select-button" id="lifestyle">Lifestyle</button>
+                <button class="category-select-button" id="digi">Digi</button>
+                <button class="category-select-button" id="autot">Autot</button>
             </div>
             <form class="flex-form" th:action="@{/luo}" th:method="POST" id="news-form" enctype="multipart/form-data">
                 <input type="hidden" id="category"/>
@@ -42,7 +41,33 @@
                 <input class="btn" type="submit" value="Submit!"/>
             </form>
         </div>
-
+        
         <div th:replace="fragments/footer">...</div>
     </body>
+    
+    <div th:replace="fragments/scripts">...</div>
+    <!--
+            For selecting a category, yes.
+    -->
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+        $(function() {
+            var buttons = $(".category-selector").children();
+            buttons.each(function(index) {
+                var button = buttons[index];
+                button.onclick = function() {
+                    if ($("#" + button.id).hasClass("category-selected")) {
+                        $("#" + button.id).removeClass("category-selected");
+                        return;
+                    }
+
+                    for (let i = 0; i < buttons.length; i++) {
+                        $("#" + buttons[i].id).removeClass("category-selected");
+                    }
+                    $("#" + button.id).addClass("category-selected");
+                };
+            });
+        });
+        /*]]>*/
+    </script>
 </html>
