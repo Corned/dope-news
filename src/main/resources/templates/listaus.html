@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
     <div th:replace="fragments/head">...</div>
+    <div th:replace="fragments/scripts">...</div>
     <title th:text="${category}">...</title>
 
     <body>
@@ -8,32 +9,25 @@
         <h1 class="jumbotron" th:text="${category}">Ajankohtaista</h1>
 
         <div class="content-container">
-            <ul>
-                <li th:each="article : ${articles}">
-                    <div class="card">
-                        <h1><span th:text="${article.headline}">...</span></h1>
-                        <div class="image-container">
-                            <img class="image" th:src="@{${'/image/' + article.picture.id}}"/>
-                        </div>
+            <div th:each="article : ${articles}" class="card">
+                <h1><span th:text="${article.headline}">...</span></h1>
+                <div class="image-container">
+                    <img class="image" th:src="@{${'/image/' + article.picture.id}}"/>
+                </div>
 
-                        <!-- Container for categories -->
-                        <div>
-                            <span class="category-pill" th:each="category : ${article.categories}" th:text="${category.category}">...</span>
-                        </div>
-            
-                        <h3>
-                            <span th:text="${article.lead}">...</span>
-                        </h3>
+                <!-- Container for categories -->
+                <div>
+                    <span class="category-pill" th:each="category : ${article.categories}" th:text="${category.category}">...</span>
+                </div>
+    
+                <h3>
+                    <span th:text="${article.lead}">...</span>
+                </h3>
 
-                        <a class="btn" th:href="@{${'/article/' + article.id}}">Lue lisää!</a>
-                    </div>
-                </li>
-            </ul>
-
+                <a class="btn" th:href="@{${'/article/' + article.id}}">Lue lisää!</a>
+            </div>
         </div>
+        
         <div th:replace="fragments/footer">...</div>
     </body>
-
-
-    <div th:replace="fragments/scripts">...</div>
 </html>

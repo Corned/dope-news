@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
     <div th:replace="fragments/head">...</div>
+    <div th:replace="fragments/scripts">...</div>
     
     <body>
         <div th:replace="fragments/navigation">...</div>
@@ -17,55 +18,71 @@
                 <button class="category-select-button" id="digi">Digi</button>
                 <button class="category-select-button" id="autot">Autot</button>
             </div>
-            <form class="flex-form" th:action="@{/luo}" th:method="POST" id="news-form" enctype="multipart/form-data">
-                <input type="hidden" id="category"/>
+            <form class="flex-form" th:action="@{/create}" th:method="POST" id="news-form" enctype="multipart/form-data">
+                <input type="hidden" value="" name="categories"/>
+                <input type="hidden" value="" name="writers"/>   
 
                 <textarea name="headline" rows="1" cols="50" placeholder="Otsikko"/>
-                <p class="counter">0/255</p>
                 <textarea name="lead" rows="2" cols="50" placeholder="Ingressi"/>
-                <p class="counter">0/255</p>
                 <textarea name="body" rows="4" cols="50" placeholder="Leipäteksti"/>
-                <p class="counter">0/255</p>
                 <input type="file" name="picture"/>
 
-                <div class="multi-input-container">
-                    <div th:replace="fragments/writer-input">...</div>
-                    <div th:replace="fragments/tag-input">...</div>
+                <div class="multi-input">
+                    <h2>Lisää Kirjoittajat</h2>
+                    <input type="text" class="writer-multi-input" placeholder="Erottele kirjoittajat pilkulla"/>
+                    
+                    <!-- holds <input type="hidden" name="writers"> -->
+                    <div class="writers-list"/>
                 </div>
 
-                <!-- required -->
-                <input type="hidden" value="" name="categories"/>
-                <input type="hidden" value="" name="writers"/>        
-                <!-- required -->
-
+                <!-- required -->     
                 <input class="btn" type="submit" value="Submit!"/>
             </form>
         </div>
         
         <div th:replace="fragments/footer">...</div>
     </body>
-    
-    <div th:replace="fragments/scripts">...</div>
+
     <!--
             For selecting a category, yes.
+            For adding writers, yes.
     -->
     <script th:inline="javascript">
         /*<![CDATA[*/
-        $(function() {
-            var buttons = $(".category-selector").children();
-            buttons.each(function(index) {
-                var button = buttons[index];
-                button.onclick = function() {
-                    if ($("#" + button.id).hasClass("category-selected")) {
-                        $("#" + button.id).removeClass("category-selected");
+        $(document).ready(function() {
+            $(".category-selector").children().each(function(index) {
+                var categoryButton = $(".category-selector").children()[index];
+                categoryButton.onclick = function() {
+                    if ($("#" + categoryButton.id).hasClass("category-selected")) {
+                        $("#" + categoryButton.id).removeClass("category-selected");
+                        $(`input[type="hidden"]`).each(function() {
+                            if ($(this).val() === categoryButton.id) {
+                                $(this).remove();
+                            }
+                        });
                         return;
                     }
 
-                    for (let i = 0; i < buttons.length; i++) {
-                        $("#" + buttons[i].id).removeClass("category-selected");
-                    }
-                    $("#" + button.id).addClass("category-selected");
+                    $("#" + categoryButton.id).addClass("category-selected");
+                    $("#news-form").append(`<input name="categories" type="hidden" value="${categoryButton.id}"/>`);
                 };
+            });
+
+            $(".writer-multi-input").on("input", function() {
+                var text = this.value.trim();
+                var keywords = text.split(",");
+
+                if (keywords.length > 1) {
+                    this.value = keywords[keywords.length - 1];
+                    for (var i = 0; i < keywords.length - 1; i++) {
+                        var keyword = keywords[i].trim();
+                        if ( keyword.length > 0) {
+                            $(`<div class="added-item" id="${keyword}">${keyword}<input type="hidden" name="writers" value="${keyword}" id="${keyword}"/></div>`).appendTo(".writers-list").click(function() {
+                                $(this).remove();
+                            });
+                        }
+                    }
+                }
             });
         });
         /*]]>*/
