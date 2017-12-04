@@ -6,38 +6,40 @@
     <body>
         <div th:replace="fragments/navigation">...</div>
 
-        <h1 class="jumbotron">Luo Uutinen</h1>
         <div class="content-container">
-            <h2>Valitse Kategoria</h2>
-            <div class="category-selector">
-                <button class="category-select-button" id="uutiset">Uutiset</button>
-                <button class="category-select-button" id="viihde">Viihde</button>
-                <button class="category-select-button" id="urheilu">Urheilu</button>
-                <button class="category-select-button" id="talous">Talous</button>
-                <button class="category-select-button" id="lifestyle">Lifestyle</button>
-                <button class="category-select-button" id="digi">Digi</button>
-                <button class="category-select-button" id="autot">Autot</button>
-            </div>
-            <form class="flex-form" th:action="@{/create}" th:method="POST" id="news-form" enctype="multipart/form-data">
-                <input type="hidden" value="" name="categories"/>
-                <input type="hidden" value="" name="writers"/>   
-
-                <textarea name="headline" rows="1" cols="50" placeholder="Otsikko"/>
-                <textarea name="lead" rows="2" cols="50" placeholder="Ingressi"/>
-                <textarea name="body" rows="4" cols="50" placeholder="Leipäteksti"/>
-                <input type="file" name="picture"/>
-
-                <div class="multi-input">
-                    <h2>Lisää Kirjoittajat</h2>
-                    <input type="text" class="writer-multi-input" placeholder="Erottele kirjoittajat pilkulla"/>
-                    
-                    <!-- holds <input type="hidden" name="writers"> -->
-                    <div class="writers-list"/>
+            <h1 class="jumbotron">Luo Uutinen</h1>
+            <div class="article-form">
+                <h2>Valitse Kategoria</h2>
+                <div class="category-selector">
+                    <button class="category-select-button" id="uutiset">Uutiset</button>
+                    <button class="category-select-button" id="viihde">Viihde</button>
+                    <button class="category-select-button" id="urheilu">Urheilu</button>
+                    <button class="category-select-button" id="talous">Talous</button>
+                    <button class="category-select-button" id="lifestyle">Lifestyle</button>
+                    <button class="category-select-button" id="digi">Digi</button>
+                    <button class="category-select-button" id="autot">Autot</button>
                 </div>
+                <form class="flex-form" th:action="@{/create}" th:method="POST" id="news-form" enctype="multipart/form-data">
+                    <input type="hidden" value="" name="categories"/>
+                    <input type="hidden" value="" name="writers"/>   
 
-                <!-- required -->     
-                <input class="btn" type="submit" value="Submit!"/>
-            </form>
+                    <textarea name="headline" rows="1" cols="50" placeholder="Otsikko"/>
+                    <textarea name="lead" rows="2" cols="50" placeholder="Ingressi"/>
+                    <textarea name="body" rows="4" cols="50" placeholder="Leipäteksti"/>
+                    <input type="file" name="picture"/>
+
+                    <div class="multi-input">
+                        <h2>Lisää Kirjoittajat</h2>
+                        <input type="text" class="writer-multi-input" placeholder="Erottele kirjoittajat pilkulla"/>
+                        
+                        <!-- holds <input type="hidden" name="writers"> -->
+                        <div class="writers-list"/>
+                    </div>
+
+                    <!-- required -->     
+                    <input class="btn" type="submit" value="Submit!"/>
+                </form>
+            </div>
         </div>
         
         <div th:replace="fragments/footer">...</div>

@@ -3,9 +3,25 @@ html * {
     font-family: 'Open Sans', sans-serif;
 }
 
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
 body {
     margin: 0px;
     background-color: rgb(243, 243, 243);
+}
+
+.content-container {
+    width: auto;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: column;
+    min-height: calc(100% - 50px);
+    margin-bottom: -101px;
+    padding-bottom: -200px;
 }
 
 .jumbotron {
@@ -69,15 +85,6 @@ body {
 
 .create-article:hover {
     background-color: rgba(0, 0, 0, 0.3);
-}
-
-.content-container {
-    width: 900px;
-    margin-left: auto;
-    margin-right: auto;
-    min-height: calc(100vh - 453px);
-    display: flex;
-    flex-direction: column;
 }
 
 .flex-form {
@@ -146,6 +153,10 @@ h2 {
     font-size: 40px;
     padding-bottom: 0px;
     margin-bottom: 10px;
+}
+
+.article-form {
+    margin-bottom: 141px;
 }
 
 .multi-input-container {
@@ -230,8 +241,8 @@ h2 {
     margin-right: auto;
     height: auto;
     align-self: end;
+    display: block;
     flex-grow: 1;
-    padding-top: 50px;
 }
 
 .footer-links {
@@ -278,6 +289,12 @@ h2 {
     margin: 10px;
     width: 900px;
     border-radius: 5px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.card:last-child {
+    margin-bottom: 150px;
 }
 
 .card > h1, .card > h3 {
@@ -305,6 +322,12 @@ h2 {
     margin-right: auto;
 }
 /* END - News view */
+
+.article-form {
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+}
 
 .category-pill {
     background-color: rgb(238, 110, 115);

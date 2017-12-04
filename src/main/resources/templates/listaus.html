@@ -6,9 +6,9 @@
 
     <body>
         <div th:replace="fragments/navigation">...</div>
-        <h1 class="jumbotron" th:text="${category}">Ajankohtaista</h1>
 
         <div class="content-container">
+            <h1 class="jumbotron" th:text="${category}"> ... </h1>
             <div th:each="article : ${articles}" class="card">
                 <h1><span th:text="${article.headline}">...</span></h1>
                 <div class="image-container">
