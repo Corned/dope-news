@@ -5,6 +5,10 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Lob;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,6 +21,8 @@ public class Picture extends AbstractPersistable<Long> {
     
     @Lob
     @Basic(fetch = FetchType.LAZY)
+    @NotEmpty
+    @Size(max = 40000000) // 5 MB
     private byte[] data;
 
     public Article getArticle() {

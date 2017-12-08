@@ -28,7 +28,9 @@ public class Article extends AbstractPersistable<Long> {
     @NotEmpty
     @Size(min = 3, max = 255)
     private String lead;
+    
     @OneToOne
+    @NotNull
     private Picture picture;
 
     @NotEmpty
