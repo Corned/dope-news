@@ -374,6 +374,7 @@ h2 {
 
 .leipateksti {
     text-align: left;
+    word-wrap: break-word;
 }
 
 
