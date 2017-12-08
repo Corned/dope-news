@@ -12,21 +12,38 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Lob;
 
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 import org.springframework.transaction.annotation.Transactional;
 
 @Entity
 public class Article extends AbstractPersistable<Long> {
+    @NotEmpty
+    @Size(min = 3, max = 255);
     private String headline;
+
+    @NotEmpty
+    @Size(min = 3, max = 255);
     private String lead;
     @OneToOne
     private Picture picture;
+
+    @NotEmpty
+    @Size(min = 3, max = 2500);
     private String body;
+    
+    @NotEmpty
     private Date date;
+
+    @NotEmpty
     @ManyToMany
     private List<Writer> writers;
+
+    @NotEmpty
     @ManyToMany
     private List<Category> categories;
+
+    @Min(0);
     private int views;
     
     public String getHeadline() {
