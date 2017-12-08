@@ -6,11 +6,14 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
-
 import javax.persistence.Basic;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Lob;
+
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.data.jpa.domain.AbstractPersistable;
@@ -19,20 +22,20 @@ import org.springframework.transaction.annotation.Transactional;
 @Entity
 public class Article extends AbstractPersistable<Long> {
     @NotEmpty
-    @Size(min = 3, max = 255);
+    @Size(min = 3, max = 255)
     private String headline;
 
     @NotEmpty
-    @Size(min = 3, max = 255);
+    @Size(min = 3, max = 255)
     private String lead;
     @OneToOne
     private Picture picture;
 
     @NotEmpty
-    @Size(min = 3, max = 2500);
+    @Size(min = 3, max = 2500)
     private String body;
     
-    @NotEmpty
+    @NotNull
     private Date date;
 
     @NotEmpty
@@ -43,7 +46,7 @@ public class Article extends AbstractPersistable<Long> {
     @ManyToMany
     private List<Category> categories;
 
-    @Min(0);
+    @Min(0)
     private int views;
     
     public String getHeadline() {
