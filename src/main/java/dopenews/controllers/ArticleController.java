@@ -2,6 +2,7 @@ package dopenews.controllers;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Collections;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import dopenews.domain.Article;
-import dopenews.domain.Picture;
 import dopenews.repository.ArticleRepository;
 import dopenews.services.CreationService;
 
@@ -26,9 +26,11 @@ public class ArticleController {
 
     @GetMapping("/")
     public String listRecent(Model model) {
-        model.addAttribute("category", "ajankohtaista");
-        model.addAttribute("articles", articleRepository.findAll());
+        List<Article> articles = articleRepository.findAll();
+        Collections.reverse(articles);
 
+        model.addAttribute("category", "ajankohtaista");
+        model.addAttribute("articles", articles);
         return "listaus";
     }
 
@@ -39,8 +41,11 @@ public class ArticleController {
 
     @GetMapping("/c/{category}")
     public String listCategory(Model model, @PathVariable String category) {
+        List<Article> articles = articleRepository.findByCategory(category);
+        Collections.reverse(articles);
+
         model.addAttribute("category", category);
-        model.addAttribute("articles", articleRepository.findByCategory(category));
+        model.addAttribute("articles", articles);
         return "listaus";
     }
 
@@ -57,7 +62,7 @@ public class ArticleController {
     public String luoPOST(@RequestParam("headline") String headline, @RequestParam("lead") String lead,
             @RequestParam("picture") MultipartFile imageFile, @RequestParam("body") String body,
             @RequestParam("writers") List<String> writerNames, @RequestParam("categories") List<String> categoryNames) throws IOException {
-                
+
         Article article = creationService.fromInput(
             headline, 
             lead, 
