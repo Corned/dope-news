@@ -53,11 +53,6 @@ public class ArticleService {
                         bViewsPartTwoWeeks++;
                     }
                 }
-
-                System.out.println(aViewsPastTwoWeeks);
-                System.out.println(bViewsPartTwoWeeks);
-                System.out.println("\n");
-
                 return (bViewsPartTwoWeeks - aViewsPastTwoWeeks);
             }
         };
