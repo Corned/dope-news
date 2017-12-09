@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -81,7 +82,7 @@ public class CreationService {
         article.setBody(body);
         article.setWriters(writers);
         article.setCategories(categories);
-        article.setDate(LocalDateTime.now());
+        article.setPublished(new Date());
 
         articleRepository.saveAndFlush(article);
 

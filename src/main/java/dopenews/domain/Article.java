@@ -1,16 +1,12 @@
 package dopenews.domain;
 
-import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
-import javax.persistence.Basic;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.Lob;
-
+import javax.persistence.OneToMany;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -38,7 +34,7 @@ public class Article extends AbstractPersistable<Long> {
     private String body;
     
     @NotNull
-    private LocalDateTime date;
+    private Date published;
 
     @NotEmpty
     @ManyToMany
@@ -48,8 +44,8 @@ public class Article extends AbstractPersistable<Long> {
     @ManyToMany
     private List<Category> categories;
 
-    @Min(0)
-    private int views;
+    @OneToMany
+    private List<View> views;
 
     public String getHeadline() {
         return headline;
@@ -67,8 +63,8 @@ public class Article extends AbstractPersistable<Long> {
         return body;
     }
 
-    public LocalDateTime getDate() {
-        return date;
+    public Date getPublished() {
+        return published;
     }
 
     public List<Writer> getWriters() {
@@ -79,7 +75,7 @@ public class Article extends AbstractPersistable<Long> {
         return categories;
     }
 
-    public int getViews() {
+    public List<View> getViews() {
         return views;
     }
 
@@ -105,8 +101,8 @@ public class Article extends AbstractPersistable<Long> {
     }
 
     @Transactional
-    public void setDate(LocalDateTime date) {
-        this.date = date;
+    public void setPublished(Date published) {
+        this.published = published;
     }
 
     @Transactional
@@ -120,12 +116,12 @@ public class Article extends AbstractPersistable<Long> {
     }
 
     @Transactional
-    public void setViews(int views) {
+    public void setViews(List<View> views) {
         this.views = views;
     }
 
     @Transactional
-    public void incremenetView() {
-        this.views++;
+    public void addView(View view) {
+        this.views.add(view);
     }
 }

@@ -4,8 +4,6 @@ import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,15 +13,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import dopenews.domain.Article;
-import dopenews.repository.ArticleRepository;
 import dopenews.services.CreationService;
+import dopenews.services.ArticleService;
 
 @Controller
 public class ArticleController {
     @Autowired
     private CreationService creationService;
     @Autowired
-    private ArticleRepository articleRepository;
+    private ArticleService articleService;
 
     @GetMapping("/")
     public String root() {
@@ -32,36 +30,31 @@ public class ArticleController {
     
     @GetMapping("/ajankohtaista")
     public String listRecent(Model model) {
-        //Pageable pageable = PageRequest.of(0, 5, Sort.Direction.DESC, "date");
-        List<Article> articles = articleRepository.findAll();
+        List<Article> articles = articleService.findAll();
+        articles = articleService.sortByDate(articles);
+        articles = articleService.getPage(articles, 0, 5);
 
-        model.addAttribute("category", "ajankohtaista");
         model.addAttribute("articles", articles);
+        model.addAttribute("category", "ajankohtaista");
         return "listaus";
     }
     
     @GetMapping("/luetuimmat")
     public String listPopular(Model model) {
-        List<Article> articles = articleRepository.findAll();
-        //Collections.reverse(articles);
+        List<Article> articles = articleService.findAll();
+        articles = articleService.filterArticlesWithNoViews(articles);
+        articles = articleService.sortByPopularity(articles);
+        articles = articleService.getPage(articles, 0, 50);
 
-        model.addAttribute("category", "luetuimmat");
         model.addAttribute("articles", articles);
+        model.addAttribute("category", "luetuimmat");
         return "listaus";
     }
-
-    @GetMapping("/c")
-    public String redirectListRecent() {
-        return "redirect:/";
-    }
-
+    
     @GetMapping("/c/{category}")
     public String listCategory(Model model, @PathVariable String category) {
-        List<Article> articles = articleRepository.findByCategory(category);
-        //Collections.reverse(articles);
 
         model.addAttribute("category", category);
-        model.addAttribute("articles", articles);
         return "listaus";
     }
 
@@ -93,7 +86,12 @@ public class ArticleController {
 
     @GetMapping("/article/{id}")
     public String showArticle(Model model, @PathVariable long id) {
-        model.addAttribute("article", articleRepository.findOne(id));
+        Article article = articleService.findOne(id);
+        articleService.incrementPageViews(article);
+
+        model.addAttribute("article", article);
+
+        System.out.println(article.getViews().size());
 
         return "article";
     }
