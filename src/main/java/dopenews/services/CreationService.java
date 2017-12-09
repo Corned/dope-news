@@ -3,8 +3,8 @@
 package dopenews.services;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -81,7 +81,7 @@ public class CreationService {
         article.setBody(body);
         article.setWriters(writers);
         article.setCategories(categories);
-        article.setDate(new Date());
+        article.setDate(LocalDateTime.now());
 
         articleRepository.saveAndFlush(article);
 

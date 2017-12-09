@@ -31,7 +31,6 @@ run {
 
 repositories {
     mavenCentral()
-    maven { url 'https://repo.spring.io/snapshot' }
 }
     
 mainClassName='dopenews.Main'

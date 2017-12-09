@@ -2,9 +2,10 @@ package dopenews.controllers;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.Collections;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,11 +26,26 @@ public class ArticleController {
     private ArticleRepository articleRepository;
 
     @GetMapping("/")
+    public String root() {
+        return "redirect:/ajankohtaista";
+    }
+    
+    @GetMapping("/ajankohtaista")
     public String listRecent(Model model) {
+        //Pageable pageable = PageRequest.of(0, 5, Sort.Direction.DESC, "date");
         List<Article> articles = articleRepository.findAll();
-        Collections.reverse(articles);
 
         model.addAttribute("category", "ajankohtaista");
+        model.addAttribute("articles", articles);
+        return "listaus";
+    }
+    
+    @GetMapping("/luetuimmat")
+    public String listPopular(Model model) {
+        List<Article> articles = articleRepository.findAll();
+        //Collections.reverse(articles);
+
+        model.addAttribute("category", "luetuimmat");
         model.addAttribute("articles", articles);
         return "listaus";
     }
@@ -42,7 +58,7 @@ public class ArticleController {
     @GetMapping("/c/{category}")
     public String listCategory(Model model, @PathVariable String category) {
         List<Article> articles = articleRepository.findByCategory(category);
-        Collections.reverse(articles);
+        //Collections.reverse(articles);
 
         model.addAttribute("category", category);
         model.addAttribute("articles", articles);

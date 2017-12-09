@@ -1,6 +1,6 @@
 package dopenews.domain;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -38,7 +38,7 @@ public class Article extends AbstractPersistable<Long> {
     private String body;
     
     @NotNull
-    private Date date;
+    private LocalDateTime date;
 
     @NotEmpty
     @ManyToMany
@@ -50,7 +50,7 @@ public class Article extends AbstractPersistable<Long> {
 
     @Min(0)
     private int views;
-    
+
     public String getHeadline() {
         return headline;
     }
@@ -67,7 +67,7 @@ public class Article extends AbstractPersistable<Long> {
         return body;
     }
 
-    public Date getDate() {
+    public LocalDateTime getDate() {
         return date;
     }
 
@@ -105,7 +105,7 @@ public class Article extends AbstractPersistable<Long> {
     }
 
     @Transactional
-    public void setDate(Date date) {
+    public void setDate(LocalDateTime date) {
         this.date = date;
     }
 
