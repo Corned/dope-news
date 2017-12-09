@@ -9,22 +9,13 @@
 
         <div class="content-container">
             <h1 class="jumbotron" th:text="${category}"> ... </h1>
-            <div th:each="article : ${articles}" class="card">
+            <div th:each="article : ${articles}" class="card clickable-article" th:id="'article/'+${article.id}">
                 <h1><span th:text="${article.headline}">...</span></h1>
-                <div class="image-container">
-                    <img class="image" th:src="@{${'/image/' + article.picture.id}}"/>
-                </div>
+                <p class="julkaisuaika" th:text="'Julkaistu ' + ${article.published}">...</p>
 
-                <!-- Container for categories -->
                 <div>
                     <span class="category-pill" th:each="category : ${article.categories}" th:text="${category.category}">...</span>
                 </div>
-    
-                <h3>
-                    <span th:text="${article.lead}">...</span>
-                </h3>
-
-                <a class="btn" th:href="@{${'/article/' + article.id}}">Lue lisää!</a>
             </div>
         </div>
         

@@ -53,7 +53,11 @@ public class ArticleController {
     
     @GetMapping("/c/{category}")
     public String listCategory(Model model, @PathVariable String category) {
+        List<Article> articles = articleService.findAllByCategory(category);
+        articles = articleService.sortByDate(articles);
+        articles = articleService.getPage(articles, 0, 50);
 
+        model.addAttribute("articles", articles);
         model.addAttribute("category", category);
         return "listaus-lite";
     }
@@ -64,7 +68,8 @@ public class ArticleController {
     }
 
     /*
-            @Valid Article article, BindingResult bindingResult ei toimi.
+            @Valid Article article, BindingResult bindingResult ei toimi, koska
+            se ei osaa laittaa @RequestParam("picture") MultipartFile imageFile siihen luokkaan >:(
             Teen oman validaattorin.
     */
     @PostMapping("/create")
