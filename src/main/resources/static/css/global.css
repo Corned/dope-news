@@ -293,6 +293,10 @@ h2 {
     margin-right: auto;
 }
 
+.clickable-article {
+    cursor: pointer;
+}
+
 .card:last-child {
     margin-bottom: 150px;
 }

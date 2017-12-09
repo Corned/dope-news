@@ -48,14 +48,14 @@ public class ArticleController {
 
         model.addAttribute("articles", articles);
         model.addAttribute("category", "luetuimmat");
-        return "listaus";
+        return "listaus-lite";
     }
     
     @GetMapping("/c/{category}")
     public String listCategory(Model model, @PathVariable String category) {
 
         model.addAttribute("category", category);
-        return "listaus";
+        return "listaus-lite";
     }
 
     @GetMapping("/create")

@@ -10,5 +10,12 @@
             $(".navigation-bar").removeClass("drop-shadow");
         }
     });
+
+    $(document).ready(function() {
+        $(".clickable-article").click(function() {
+            var id = $(this).attr("id");
+            window.location.href = "/article/" + id.split("/")[1];
+        });
+    });
     /*]]>*/
 </script>
