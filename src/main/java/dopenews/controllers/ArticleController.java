@@ -67,11 +67,6 @@ public class ArticleController {
         return "luo";
     }
 
-    /*
-            @Valid Article article, BindingResult bindingResult ei toimi, koska
-            se ei osaa laittaa @RequestParam("picture") MultipartFile imageFile siihen luokkaan >:(
-            Teen oman validaattorin.
-    */
     @PostMapping("/create")
     public String luoPOST(@RequestParam("headline") String headline, @RequestParam("lead") String lead,
             @RequestParam("picture") MultipartFile imageFile, @RequestParam("body") String body,
